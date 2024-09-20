@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<!-- Message Display -->
+{% if message %}
+<div class="alert alert-{{ message_type }}">
+    {{ message }}
+</div>
+{% endif %}
 
     <h1> THE STRONGEST VPN IN THE WORLD. </h1>
 

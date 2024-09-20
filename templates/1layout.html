@@ -28,34 +28,21 @@
                         <li id="brand"><a href="{{ url_for('index') }}">Hercules VPN</a></li>
                         <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
                         <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                       
                         <div class="signup">
-                            {% if session.get('email') %}
-                                <li>
-                                    <!-- Display the username -->
-                                    <span style="color: blue;">Hello, {{ session['user_name'] }}</span>
-                                </li>
-                                <li>
-                                    <!-- Logout option -->
-                                    <a href="{{ url_for('logout') }}">
-                                        <span class="fas fa-sign-out-alt" style="color: red;">Logout</span>
-                                    </a>
-                                </li>
-                                <li></li>
-                                    <!-- Sign in or Create Account option -->
-                                    <a href="{{ url_for('updte_psswrd') }}">
-                                        <img src="{{ url_for('static', filename='images/icons/profile.png') }}" width="40px" alt="Profile">
-                                        <span class="fas fa-user" style="color: blue;">Update password</span>
-                                    </a>
-                                </li>
-                            {% else %}
-                                <li>
-                                    <!-- Sign in or Create Account option -->
-                                    <a href="{{ url_for('signup') }}">
-                                        <img src="{{ url_for('static', filename='images/icons/profile.png') }}" width="40px" alt="Profile">
-                                        <span class="fas fa-user" style="color: blue;">Sign in / Create Account</span>
-                                    </a>
-                                </li>
-                            {% endif %}
+                            <li>
+                                <img src="{{ url_for('static', filename='images/icons/profile.png') }}" width="40px" alt=""> 
+                                {% if session.get('email') %}
+                                
+                                <a href="{{ url_for('logout') }}">
+                                    <span class="fas fa-user" style="color:blue">{{ session['user_name'] }} (Logout)</span>
+                                </a>
+                                {% else %}
+                                <a href="{{ url_for('signup') }}">
+                                    <span class="fas fa-user" style="color:blue">Sign in / Create Account</span>
+                                </a>
+                                {% endif %}
+                            </li>
                         </div>
                     </ul>
                 </nav>

@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="createcontainer">
+        <div class="createlogo">
+            <p id="hercCreate">Hercules <span>VPN</span></p>
+            <p>We're here to protect you and help you keep your privacy.</p>
+            <br>
+            <img id="createlogo1" src="{{ url_for('static', filename='images/icons/AI.LOGO.TRANSPARENCY.png') }}" height="200px" alt="">
+        </div>
+        <div class="updatepasswrd">
+            <!-- Signup Form -->
+            <form class="form" action="{{ url_for('updte_psswrd') }}" method="POST">
+                {{ update_form.hidden_tag() }}
+                <div class="form-group">
+                    {{ update_form.password_old.label }}
+                    {{ update_form.password_old(class="field") }}
+                    {% if update_form.password_old.errors %}
+                        <ul class="errors">
+                            {% for error in form.first_name.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <br>
+
+                <div class="form-group">
+                    {{ update_form.password_new.label }}
+                    {{ update_form.password_new(class="field") }}
+                    {% if update_form.password_new.errors %}
+                        <ul class="errors">
+                            {% for error in form.last_name.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <br>
+
+                <div class="form-group">
+                    {{ update_form.confirm_password_new.label }}
+                    {{ update_form.confirm_password_new(class="field") }}
+                    {% if update_form.confirm_password_new.errors %}
+                        <ul class="errors">
+                            {% for error in form.email.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <br>
+
+                <div class="form-group">
+                    {{ update_form.submit(class="submitme") }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
