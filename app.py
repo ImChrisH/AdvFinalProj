@@ -16,7 +16,7 @@ from datetime import datetime
 app = Flask(__name__)
 csrf = CSRFProtect(app)
 app.secret_key = 'your_secret_key_here'
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:4b%233uXfCF%242@localhost/VPNCustdb'
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:9658@localhost/VPNCustomerdb'
 db = SQLAlchemy(app)
 app.permanent_session_lifetime= timedelta(days=1)
 
@@ -191,13 +191,16 @@ def login():
 @app.route("/updte_psswrd", methods=['GET', 'POST'])
 def updte_psswrd():
     update_form = Updtepasswrd()
+    user = Data.query.filter_by(email=session['email']).first()
+    session['email'] = user.email
+    session['image'] = user.image_id
     if request.method == 'POST' and update_form.validate_on_submit():
         if 'email' not in session:
             return redirect(url_for('index', message='login to your account first'))  # Redirect to login if the user is not logged in
 
         
         # Get the user's information from the session
-        user = Data.query.filter_by(email=session['email']).first()
+        
         
         # Check if the old password entered by the user matches the current password
         if user and check_password_hash(user.password, update_form.password_old.data):
@@ -215,12 +218,12 @@ def updte_psswrd():
                 db.session.commit()
 
                 flash('Password updated successfully', 'success')
-                return redirect(url_for('index', message='Password updated successfully', message_type='success'))
+                return redirect(url_for('index', message='Password updated successfully', message_type='success',user=user))
             else:
                 flash('Old password is incorrect', 'danger')
                 return redirect(url_for('updte_psswrd', message='Old password is incorrect', message_type='failure'))
     
-    return render_template('updte_psswrd.html', update_form= update_form)    
+    return render_template('updte_psswrd.html', update_form= update_form,user=user) 
 
 # PROFILE ROUTE
 
