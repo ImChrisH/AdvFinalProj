@@ -16,7 +16,7 @@ from datetime import datetime
 app = Flask(__name__)
 csrf = CSRFProtect(app)
 app.secret_key = 'your_secret_key_here'
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:4b%233uXfCF%242@localhost/VPNCustdb'
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:9658@localhost/VPNCustomerdb'
 db = SQLAlchemy(app)
 app.permanent_session_lifetime= timedelta(days=1)
 
@@ -101,19 +101,23 @@ with app.app_context():
 def index():
     message = request.args.get('message')
     message_type = request.args.get('message_type')
-    return render_template('index.html', message=message, message_type=message_type)
+    user = Data.query.filter_by(email=session.get('email')).first()
+    return render_template('index.html', user=user,message=message, message_type=message_type)
+
 
 # PRICING ROUTE
 
 @app.route("/pricing")
 def pricing():
-    return render_template("pricing.html")
+    user = Data.query.filter_by(email=session.get('email')).first()
+    return render_template("pricing.html",user=user)
 
 # CONTACT ROUTE
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+    user = Data.query.filter_by(email=session.get('email')).first()
+    return render_template("contact.html",user=user)
 
 # @app.route("/signup", methods=['POST','GET'])
 # def signup():
@@ -142,13 +146,13 @@ def signup():
         # Output the hashed password
         print(hashed_password)
         print(f"First Name: {first_name}, Last Name: {last_name}, Email: {email}, Hashed Password: {hashed_password}")
-
+        user = Data.query.filter_by(email=session.get('email')).first()
 
         data = Data(first_name, last_name, email, hashed_password)
         try:
             db.session.add(data)   
             db.session.commit()
-            return redirect(url_for('index', message='Registration Successful', message_type='success'))
+            return redirect(url_for('index',user=user, message='Registration Successful', message_type='success'))
     
         except IntegrityError as e:
             db.session.rollback()
@@ -176,11 +180,11 @@ def login():
         if user and check_password_hash(user.password, password):
             session['email'] = user.email
             session['user_name'] = user.first_name.title() # Store the user's first name
-            return render_template("index.Html", form=form, message='Login Successful', message_type='success', )
+            return render_template("index.Html", form=form, message='Login Successful', message_type='success',user=user )
             # return redirect(url_for('index')) 
         else:
             return redirect(url_for('index', message='Invalid email or password', message_type='failure'))
-    return render_template("index.html", form=form)  # Render the login template
+    return render_template("index.html", form=form,user=user)  # Render the login template
 
 # UPDATE ROUTE
 
