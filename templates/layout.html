@@ -6,6 +6,7 @@
     <title>Hercules VPN</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/icons/favicon.ico') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
 
 <!-- Allow child templates to use their own css,start -->
 
@@ -24,24 +25,41 @@
                 </div>
                 <nav class="navbar">
                     <ul>
-                        <li><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/icons/AI.LOGO.TRANSPARENCY.png') }}" width="40px" alt=""></a></li>
+                        <li><a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/icons/AI.LOGO.TRANSPARENCY.png') }}"  width="30px"></a></li>
                         <li id="brand"><a href="{{ url_for('index') }}">Hercules VPN</a></li>
                         <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
                         <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                        
+                       
+
                         <div class="signup">
-                            <li>
-                                <img src="{{ url_for('static', filename='images/icons/profile.png') }}" width="40px" alt=""> 
-                                {% if session.get('email') %}
+                            
+                            {% if session.get('email') %}
+                                    
+                                    <img src="{{ url_for('static', filename='images/icons/profile.png')}}"" width="40px" alt="defaultpic"></li>
+                                    <li>
+                                    <li>
+                                    <!-- Display the username -->
+                                    <span style="color: blue;"><li><a href="{{ url_for('profile') }}">Hello, {{ session['user_name'] }}</a></li></span>
+                                    </li>
+                                    <li>
+                            
+                                    <!-- Logout option -->
+                                    <a href="{{ url_for('logout') }}">
+                                        <span class="fas fa-sign-out-alt" style="color: red;">Logout</span>
+                                    </a>
+                                    </li>
+                                    <!-- Sign in or Create Account option -->
                                 
-                                <a href="{{ url_for('logout') }}">
-                                    <span class="fas fa-user" style="color:blue">{{ session['user_name'] }} (Logout)</span>
-                                </a>
-                                {% else %}
-                                <a href="{{ url_for('signup') }}">
-                                    <span class="fas fa-user" style="color:blue">Sign in / Create Account</span>
-                                </a>
-                                {% endif %}
-                            </li>
+                            {% else %}
+                                <li>
+                                    <!-- Sign in or Create Account option -->
+                                    <a href="{{ url_for('signup') }}">
+                                        <!-- <img src="{{ url_for('static', filename='images/icons/profile.png') }}" width="40px" alt="Profile"> -->
+                                        <span class="fas fa-user" style="color: blue;">Sign in / Create Account</span>
+                                    </a>
+                                </li>
+                            {% endif %}
                         </div>
                     </ul>
                 </nav>

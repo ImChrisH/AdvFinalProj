@@ -2,11 +2,10 @@
     /* background-color: red; */
     display:flex;
     flex-direction: column;
-    width:100%;
+    width:90%;
     margin: auto;
     margin-top: 5%;
     max-width: 600px;
-    gap:25%;
 }
 
 #hercCreate{
@@ -29,7 +28,7 @@
 }
        
 
-.createuser {
+.updatepasswrd {
     align-content: left;
     height:auto;
     justify-content: center;
@@ -90,7 +89,7 @@
         padding-right: 5%;
     }
     
-    .createuser {
+    .updatepasswrd {
         align-content: center;
     }
 }

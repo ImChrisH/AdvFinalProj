@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<div class="pSuperWrap">
+    
+    <h3>Account</h3>
+    
+    
+    {% if user %}
+
+    <div class="pContainer1">
+        <ul class="pContainer2">
+            {% if user.image %}
+                <div class="pProfilePic">
+                    <img class="pImage" src="{{ url_for('get_image', image_id=user.image.id) }}" width="500px" alt="Profile Picture">
+                </div>    
+            {% else %}
+                <p>No profile picture uploaded.</p>
+            {% endif %}
+            <p>Current Date and Time: {{ current_time.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+            <br>
+            <li><strong>First name</strong> {{ user.first_name.title() }}</li>
+            <br>
+            <li><strong>Last name</strong> {{ user.last_name.title() }}</li>
+            <br>
+            <li><strong>Email</strong> {{ user.email }}</li>
+            <br>
+            <li><strong>Profile picture</strong><form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
+                <br>
+                {{ form.hidden_tag() }}
+                <input type="file" name="pic">
+                <br>
+                <input type="submit"value="Upload Photo">
+
+            </form> </li>
+
+            <!-- <li><a href="{{ url_for('logout') }}">Logout</a></li> -->
+            <br><br>
+            <a href="{{ url_for('updte_psswrd') }}">Change password</a>
+        </ul>
+    </div>
+    {% else %}
+        <p>No user data available.</p>
+    {% endif %}
+    <br><br><br>
+    <div>
+    <br>
+    <a class="plogout" href="{{ url_for('logout') }}">Logout</a>
+    <br><br><br>
+    </div>
+{% endblock %}

@@ -384,10 +384,18 @@ figcaption{
 }
 .alert{
     color: brown;
+    text-shadow: .5px .5px black;
+    /* background-color: rgb(255, 69, 69); */
+    border:1px solid red;
+    border-radius: 20px;
     text-align: center;
     margin: auto;
-    width:25%;
+    width:clamp(25%,400px,60%);
     font-size: 25px;
 }
 
-
+.success {
+    background-color: light green ;
+    border:1px solid green;
+    color: darkgreen;
+}

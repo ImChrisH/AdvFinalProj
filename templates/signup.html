@@ -28,6 +28,8 @@
                         </ul>
                     {% endif %}
                 </div>
+                <br>
+
                 <div class="form-group">
                     {{ form.last_name.label }}
                     {{ form.last_name(class="field") }}
@@ -39,6 +41,8 @@
                         </ul>
                     {% endif %}
                 </div>
+                <br>
+
                 <div class="form-group">
                     {{ form.email.label }}
                     {{ form.email(class="field") }}
@@ -50,6 +54,8 @@
                         </ul>
                     {% endif %}
                 </div>
+                <br>
+
                 <div class="form-group">
                     {{ form.password.label }}
                     {{ form.password(class="field") }}
@@ -60,7 +66,8 @@
                             {% endfor %}
                         </ul>
                     {% endif %}
-                </div>
+                </div><br>
+
                 <div class="form-group">
                     {{ form.submit_create(class="submitme") }}
                 </div>
@@ -84,6 +91,8 @@
                         </ul>
                     {% endif %}
                 </div>
+                <br>
+
                 <div class="form-group">
                     {{ login_form.password.label }}
                     {{ login_form.password(class="field") }}
@@ -95,10 +104,15 @@
                         </ul>
                     {% endif %}
                 </div>
+                <br>
+
                 <div class="form-group">
-                    {{ login_form.submit_login(class="submitme") }}  <!-- Use the correct form here -->
+                    {{ login_form.submit_login(class="submitme") }}
                 </div>
+                
+            
             </form>
         </div>
     </div>
+    <br><br>
 {% endblock %}
