@@ -14,7 +14,7 @@
     {% if user %}
 
     <div class="pContainer1">
-        <ul class="pContainer2">
+        <div class="pContainer2">
             {% if user.image %}
                 <div class="pProfilePic">
                     <img class="pImage" src="{{ url_for('get_image', image_id=user.image.id) }}" width="500px" alt="Profile Picture">
@@ -22,27 +22,46 @@
             {% else %}
                 <p>No profile picture uploaded.</p>
             {% endif %}
-            <p>Current Date and Time: {{ current_time.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-            <br>
-            <li><strong>First name</strong> {{ user.first_name.title() }}</li>
-            <br>
-            <li><strong>Last name</strong> {{ user.last_name.title() }}</li>
-            <br>
-            <li><strong>Email</strong> {{ user.email }}</li>
-            <br>
-            <li><strong>Profile picture</strong><form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
+            <form action="{{ url_for('upload') }}" enctype="multipart/form-data" method="POST">
                 <br>
                 {{ form.hidden_tag() }}
                 <input type="file" name="pic">
                 <br>
-                <input type="submit"value="Upload Photo">
+                <input class="pChange" type="submit"value="Upload Photo">
 
-            </form> </li>
+            </form>
+            
+            <table>
+                <tr>
+                    <td><strong>First name</strong></td><td>{{ user.first_name.title() }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Last name</strong></td><td>{{ user.last_name.title() }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Email address</strong></td><td> {{ user.email }}</td>
+                </tr>
 
-            <!-- <li><a href="{{ url_for('logout') }}">Logout</a></li> -->
+            </table>
+            
+            <!-- <br>
+            <li><strong>First name</strong> {{ user.first_name.title() }}</li>
+            <br>
+            <li><strong>Last name</strong> &nbsp; {{ user.last_name.title() }}</li>
+            <br>
+            <li><strong>Email</strong> {{ user.email }}</li>
+            <br>
+            <li><strong>Profile picture</strong>
+                <br> -->
+                
+                <p>Current Date and Time: {{ current_time.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+
+            
             <br><br>
-            <a href="{{ url_for('updte_psswrd') }}">Change password</a>
-        </ul>
+
+            <button class="cPassword"><a href="{{ url_for('updte_psswrd') }}">Change password</a></button>
+            
+        </div>
     </div>
     {% else %}
         <p>No user data available.</p>
@@ -50,7 +69,7 @@
     <br><br><br>
     <div>
     <br>
-    <a class="plogout" href="{{ url_for('logout') }}">Logout</a>
+    <!-- <a class="plogout" href="{{ url_for('logout') }}">Logout</a> -->
     <br><br><br>
     </div>
 {% endblock %}

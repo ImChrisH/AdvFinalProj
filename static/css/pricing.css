@@ -3,7 +3,7 @@
     font-size: 12px;
 }
 
-button{
+.pricingBtn{
     border-radius: 100px;
     width:300px;
     height:50px;
@@ -17,13 +17,13 @@ button{
     
 }
 
-button:hover{
+.pricingBtn:hover{
     transform: scale(1.05);
     box-shadow: 4px 6px rgba(0, 0, 0, 0.6);
   
 }
 
-button:active {
+.pricingBtn:active {
     border: inset;
     transform: scale(80%);
     

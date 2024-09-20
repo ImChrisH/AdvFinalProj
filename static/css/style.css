@@ -29,9 +29,10 @@ a:link{
 
 .navbar {
     /* display: flex; */
-    width: 90%;
+    width: 80%;
     padding:1%;
     /* background-color: red; */
+    
     margin: auto;
 }
 
@@ -44,7 +45,7 @@ a:link{
 }
 
 .navbar .signup i {
-    margin-right: 8px; /* Adjust spacing as needed */
+    margin-right: 8px; 
     flex-wrap: wrap;
 }
 
@@ -54,9 +55,6 @@ a:link{
     flex-wrap: wrap;
     font-size: 15px;
     list-style-type: none;
-    /* background-color: red; */
-    /* justify-content: center; */
-    list-style-type: none;
     text-decoration: none;
     align-content: center;
     align-items: center;
@@ -64,21 +62,83 @@ a:link{
 
 .navbar li{
     padding:1%;
-    flex-wrap: wrap;
-    /* font-size: 25px; */
+    
 }
+
 @media (max-width: 600px) {
     .navbar li {
-        flex: 1 0 100%;
+        flex: 1 0 40%;
         justify-content: flex-start;
     }
 }
 
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .navbar ul {
+        flex-direction: column; 
+        padding: 0; 
+        margin: 0; 
+    }
+
+    .signup {
+        width: 100%; 
+        justify-content: center; 
+        padding: 0;
+    }
+
+    .navbar li {
+        padding: 10px;
+        width: 100%; 
+        text-align: center; 
+    }
+}
 
 .navbar a:hover {
     
     color: blue;
     
+}
+
+.nSignCreate{
+    color: white;
+    background-color: rgb(23, 131, 255);
+    border-radius: 30px;
+    padding: 10px;
+    /* text-shadow:1px 1px black; */
+    
+}
+
+.userLogged{
+    align-content: center;
+    text-shadow:.5px 1px black;
+
+}
+
+.pThPic {
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+    display:inline-block;
+    vertical-align:middle;
+    filter: drop-shadow(0 0 0.75rem rgb(20, 33, 220));
+    transition-duration:  .5s;
+}
+
+.pThPic:hover {
+    transform: scale(1.2);
+}
+
+.logoutBtn {
+    color:white;
+    background-color: rgba(0, 0, 165, 0.774);
+    border-radius :10px;
+    width:100px;
+    padding:10px;
+    font-size: 15px;
 }
 
 h1 {

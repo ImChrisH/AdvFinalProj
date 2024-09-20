@@ -34,19 +34,28 @@
 
                         <div class="signup">
                             
-                            {% if session.get('email') %}
+                                    {% if session.get('email') %}
                                     
-                                    <img src="{{ url_for('static', filename='images/icons/profile.png')}}"" width="40px" alt="defaultpic"></li>
-                                    <li>
-                                    <li>
+                                    <li id="pThumbnail">
+
+                                    {% if user.image %}
+                                        <a href="{{ url_for('profile') }}"> <img class="pThPic" src="{{ url_for('get_image', image_id=user.image.id) }}" height="30px" alt="Profile Picture"></a>
+                                    {% else %}
+                                        <img src="{{ url_for('static', filename='images/icons/profile.png') }}" width="50px" alt="Profile">
+                                    {% endif %} 
+                                    
+                                    </li>
+                                
+                                    <li class="userLogged"">
+
                                     <!-- Display the username -->
-                                    <span style="color: blue;"><li><a href="{{ url_for('profile') }}">Hello, {{ session['user_name'] }}</a></li></span>
+
+                                    <span><a href="{{ url_for('profile') }}"> {{ session['user_name'] }}</a></span>
                                     </li>
                                     <li>
                             
                                     <!-- Logout option -->
-                                    <a href="{{ url_for('logout') }}">
-                                        <span class="fas fa-sign-out-alt" style="color: red;">Logout</span>
+                                    <a href="{{ url_for('logout') }}"><button class="logoutBtn">Sign out</button>
                                     </a>
                                     </li>
                                     <!-- Sign in or Create Account option -->
@@ -56,7 +65,7 @@
                                     <!-- Sign in or Create Account option -->
                                     <a href="{{ url_for('signup') }}">
                                         <!-- <img src="{{ url_for('static', filename='images/icons/profile.png') }}" width="40px" alt="Profile"> -->
-                                        <span class="fas fa-user" style="color: blue;">Sign in / Create Account</span>
+                                        <button class="nSignCreate">Sign in / Create Account</button>
                                     </a>
                                 </li>
                             {% endif %}

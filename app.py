@@ -16,7 +16,7 @@ from datetime import datetime
 app = Flask(__name__)
 csrf = CSRFProtect(app)
 app.secret_key = 'your_secret_key_here'
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:9658@localhost/VPNCustomerdb'
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:4b%233uXfCF%242@localhost/VPNCustdb'
 db = SQLAlchemy(app)
 app.permanent_session_lifetime= timedelta(days=1)
 
